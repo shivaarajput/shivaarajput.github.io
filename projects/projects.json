@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Quote Generator",
+    "desc": "The Quote Generator is a web application that generates random quotes to inspire, motivate, and spark creativity.",
+    "image": "quotegen",
+    "category": "Web App",
+    "links": {
+      "view": "https://shivaarajput.github.io/QuoteGenerator/",
+      "code": "https://github.com/shivaarajput/QuoteGenerator"
+    }
+  },
+  {
+    "name": "Portfolio Site",
+    "desc": "A portfolio showcasing an ADCA teacher's work, with a project gallery, student testimonials, and achievements.",
+    "image": "roushansir",
+    "category": "Web App",
+    "links": {
+      "view": "https://roushantallyt.vercel.app/",
+      "code": "https://github.com/shivaarajput/RaushanSir"
+    }
+  },
+  {
+    "name": "QuickChat",
+    "desc": "QuickChat lets users enter a username and quickly connect to WhatsApp, Instagram, or Telegram for instant chatting.",
+    "image": "quickchat",
+    "category": "Web App",
+    "links": {
+      "view": "https://shivaarajput.github.io/QuickChat/",
+      "code": "https://github.com/shivaarajput/QuickChat"
+    }
+  },
+  {
+    "name": "New Year Card",
+    "desc": "This project is a simple and interactive New Year 2024 greeting card webpage created using HTML, CSS, and JavaScript.",
+    "image": "newyear",
+    "category": "Web App",
+    "links": {
+      "view": "https://shivaarajput.github.io/New-Year/",
+      "code": "https://github.com/shivaarajput/New-Year"
+    }
+  }
+]
