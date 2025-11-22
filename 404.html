@@ -1,159 +1,169 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/assets/css/404.css" />
-    <!-- Font Awesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <!-- Favicon -->
-    <link
-      id="favicon"
-      rel="shortcut icon"
-      href="/assets/images/favicon.png"
-      type="image/x-png"
-    />
-    <title>Got Lost! Page Not Found</title>
-  </head>
-  <body oncontextmenu="return false">
-    <!-- navbar starts -->
-    <header>
-      <a href="/" class="logo"><i class="fab fa-node-js"></i> Shivam</a>
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 | Lost in Space</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-      <div id="menu" class="fas fa-bars"></div>
-      <nav class="navbar">
-        <ul>
-          <li><a href="/#home">Home</a></li>
-          <li><a href="/#about">About</a></li>
-          <li><a href="/#skills">Skills</a></li>
-          <li><a href="/#education">Education</a></li>
-          <li><a href="/#work">Work</a></li>
-          <li><a href="/#experience">Experience</a></li>
-          <li><a href="/#contact">Contact</a></li>
-        </ul>
-      </nav>
-    </header>
-    <!-- navbar ends -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Outfit', 'sans-serif'] },
+                    colors: { primary: '#0d9488', dark: '#0f172a' }
+                }
+            }
+        }
+    </script>
 
-    <!-- 404 section start -->
-    <section class="page_404">
-      <div class="container">
-        <div class="wrapper">
-          <h1 class="text-center">404</h1>
+    <style>
+        /* Glitch Animation for 404 Text */
+        .glitch {
+            position: relative;
+            color: white;
+            font-weight: 900;
+            letter-spacing: 0.5rem;
+            text-shadow: 0.05em 0 0 #00fffc, -0.03em -0.04em 0 #fc00ff,
+                         0.025em 0.04em 0 #fffc00;
+            animation: glitch 725ms infinite;
+        }
+
+        .glitch span {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        @keyframes glitch {
+            0% { text-shadow: 0.05em 0 0 #00fffc, -0.03em -0.04em 0 #fc00ff, 0.025em 0.04em 0 #fffc00; }
+            15% { text-shadow: 0.05em 0 0 #00fffc, -0.03em -0.04em 0 #fc00ff, 0.025em 0.04em 0 #fffc00; }
+            16% { text-shadow: -0.05em -0.025em 0 #00fffc, 0.025em 0.035em 0 #fc00ff, -0.05em -0.05em 0 #fffc00; }
+            49% { text-shadow: -0.05em -0.025em 0 #00fffc, 0.025em 0.035em 0 #fc00ff, -0.05em -0.05em 0 #fffc00; }
+            50% { text-shadow: 0.05em 0.035em 0 #00fffc, 0.03em 0 0 #fc00ff, 0 -0.04em 0 #fffc00; }
+            99% { text-shadow: 0.05em 0.035em 0 #00fffc, 0.03em 0 0 #fc00ff, 0 -0.04em 0 #fffc00; }
+            100% { text-shadow: -0.05em 0 0 #00fffc, -0.025em -0.04em 0 #fc00ff, -0.04em -0.025em 0 #fffc00; }
+        }
+
+        /* Astronaut Float Animation */
+        .float { animation: float 6s ease-in-out infinite; }
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+    </style>
+</head>
+<!-- Changed: min-h-screen instead of h-screen to allow scrolling on small devices -->
+<body class="bg-gray-900 text-white font-sans min-h-screen flex flex-col items-center justify-center relative overflow-x-hidden">
+
+    <!-- Canvas Background -->
+    <canvas id="particle-canvas" class="absolute top-0 left-0 w-full h-full z-0 pointer-events-none"></canvas>
+
+    <!-- Content Wrapper (flex-grow pushes footer down) -->
+    <div class="relative z-10 text-center px-4 flex-grow flex flex-col items-center justify-center w-full max-w-4xl py-12">
+        
+        <!-- Floating Astronaut Icon -->
+        <div class="float mb-6 inline-block">
+            <i class="fas fa-user-astronaut text-6xl sm:text-7xl md:text-8xl text-teal-400 opacity-80"></i>
         </div>
 
-        <div class="msg">
-          <h3>Looks like you're lost</h3>
-          <p>The page you are looking for is not available!</p>
+        <!-- Glitch 404 (Responsive Text Sizes) -->
+        <h1 class="glitch mb-4 text-6xl sm:text-8xl md:text-9xl" data-text="404">404</h1>
+        
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 text-gray-200">Houston, we have a problem.</h2>
+        <p class="text-gray-400 max-w-md mx-auto mb-10 text-base sm:text-lg">
+            The page you are looking for seems to have drifted into a black hole. Let's get you back to safety.
+        </p>
 
-          <div class="backbtn">
-            <a href="/" class="btn">
-              <i class="fas fa-arrow-left"></i>
-              <span>Back to Home</span>
+        <!-- Action Buttons -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center w-full sm:w-auto">
+            <a href="/" class="group relative px-8 py-3 bg-teal-600 hover:bg-teal-700 rounded-lg font-bold transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(13,148,136,0.5)] overflow-hidden text-center">
+                <span class="relative z-10 flex items-center justify-center gap-2">
+                    <i class="fas fa-shuttle-space"></i> Return to Base
+                </span>
             </a>
-          </div>
+            <button onclick="history.back()" class="px-8 py-3 border border-gray-600 hover:bg-gray-800 rounded-lg font-bold transition-all text-gray-300 hover:text-white text-center">
+                Go Back
+            </button>
         </div>
-      </div>
-    </section>
-    <!-- 404 section end -->
+    </div>
 
-    <!-- footer section starts -->
-    <section class="footer">
-      <div class="box-container">
-        <div class="box">
-          <h3>Shivam's Portfolio</h3>
-          <p>
-            Thank you for visiting my personal portfolio website. Connect with
-            me over socials. <br />
-            <br />
-            Keep Rising 🚀. Connect with me over live chat!
-          </p>
-        </div>
+    <!-- Footer Copyright (Standard Flow - No longer absolute) -->
+    <div class="relative z-10 text-gray-600 text-xs sm:text-sm pb-8 mt-auto">
+        ERROR CODE: 404_PAGE_NOT_FOUND
+    </div>
 
-        <div class="box">
-          <h3>quick links</h3>
-          <a href="/#home"><i class="fas fa-chevron-circle-right"></i> home</a>
-          <a href="/#about"
-            ><i class="fas fa-chevron-circle-right"></i> about</a
-          >
-          <a href="/#skills"
-            ><i class="fas fa-chevron-circle-right"></i> skills</a
-          >
-          <a href="/#education"
-            ><i class="fas fa-chevron-circle-right"></i> education</a
-          >
-          <a href="/#work"><i class="fas fa-chevron-circle-right"></i> work</a>
-          <a href="/#experience"
-            ><i class="fas fa-chevron-circle-right"></i> experience</a
-          >
-        </div>
+    <!-- Particle Script (Optimized for 404 Page) -->
+    <script>
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        let particlesArray;
 
-        <div class="box">
-          <h3>contact info</h3>
-          <p><i class="fas fa-phone"></i>+91 620-028-5628</p>
-          <p><i class="fas fa-envelope"></i>shivamsinghamrajput@gmail.com</p>
-          <p><i class="fas fa-map-marked-alt"></i>Bihar, India-803101</p>
-          <div class="share">
-            <a
-              href="https://www.linkedin.com/in/shivadhruva"
-              class="fab fa-linkedin"
-              aria-label="LinkedIn"
-              target="_blank"
-            ></a>
-            <a
-              href="https://github.com/shivaarajput"
-              class="fab fa-github"
-              aria-label="GitHub"
-              target="_blank"
-            ></a>
-            <a
-              href="mailto:shivamsinghamrajput+portfolio@gmail.com"
-              class="fas fa-envelope"
-              aria-label="Mail"
-              target="_blank"
-            ></a>
-            <a
-              href="https://ig.me/m/shivamsinghamrajput"
-              class="fab fa-twitter"
-              aria-label="Twitter"
-              target="_blank"
-            ></a>
-            <a
-              href="https://t.me/themoonlightphoenix"
-              class="fab fa-telegram-plane"
-              aria-label="Telegram"
-              target="_blank"
-            ></a>
-          </div>
-        </div>
-      </div>
+        const resizeCanvas = () => {
+            canvas.width = window.innerWidth;
+            canvas.height = Math.max(window.innerHeight, document.body.scrollHeight);
+        }
+        resizeCanvas();
+        window.addEventListener('resize', () => { resizeCanvas(); init(); });
 
-      <h1 class="credit">
-        Designed with <i class="fa fa-heart pulse"></i> by
-        <a href="https://www.linkedin.com/in/shivadhruva"> shiva </a>
-      </h1>
-    </section>
-    <!-- footer section ends -->
+        let mouse = { x: null, y: null, radius: 150 };
+        window.addEventListener('mousemove', (e) => { mouse.x = e.x; mouse.y = e.y; });
 
-    <!-- ==== ALL MAJOR JAVASCRIPT CDNS STARTS ==== -->
+        class Particle {
+            constructor(x, y, dX, dY, size) {
+                this.x = x; this.y = y; this.dX = dX; this.dY = dY; this.size = size;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI*2);
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.3)'; // Always subtle white for 404
+                ctx.fill();
+            }
+            update() {
+                if(this.x > canvas.width || this.x < 0) this.dX = -this.dX;
+                if(this.y > canvas.height || this.y < 0) this.dY = -this.dY;
+                
+                // Mouse Interaction
+                let dx = mouse.x - this.x;
+                let dy = mouse.y - this.y;
+                let distance = Math.sqrt(dx*dx + dy*dy);
+                if (distance < mouse.radius) {
+                    const force = (mouse.radius - distance) / mouse.radius;
+                    const moveX = (dx / distance) * force * 2;
+                    const moveY = (dy / distance) * force * 2;
+                    this.x -= moveX; this.y -= moveY;
+                } else {
+                    this.x += this.dX; this.y += this.dY;
+                }
+                this.draw();
+            }
+        }
 
-    <!-- jquery cdn -->
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
+        function init() {
+            particlesArray = [];
+            let numberOfParticles = (canvas.height * canvas.width) / 15000;
+            for(let i=0; i<numberOfParticles; i++) {
+                let size = (Math.random() * 2) + 1;
+                let x = Math.random() * canvas.width;
+                let y = Math.random() * canvas.height;
+                let dX = (Math.random() * 0.5) - 0.25; // Slower, space-like drift
+                let dY = (Math.random() * 0.5) - 0.25;
+                particlesArray.push(new Particle(x, y, dX, dY, size));
+            }
+        }
 
-    <!-- ==== ALL MAJOR JAVASCRIPT CDNS ENDS ==== -->
+        function animate() {
+            requestAnimationFrame(animate);
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+            particlesArray.forEach(p => p.update());
+        }
 
-    <script src="/assets/js/404.js"></script>
-  </body>
+        init();
+        animate();
+    </script>
+</body>
 </html>

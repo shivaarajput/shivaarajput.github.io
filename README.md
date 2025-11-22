@@ -1,38 +1,68 @@
-# Shivam Kumar's Portfolio
+# 🚀 Shivam Kumar - Modern Portfolio
 
-Welcome to my portfolio! My name is Shivam Kumar, and I am a BCA student and web developer. This site showcases my projects, skills, and passion for web development.
+A high-performance, dynamic portfolio website built for Software Engineers. It features a stunning dark mode design, particle animations, and a fully functional Admin Dashboard powered by Firebase.
 
-## About Me
+**Live Site:** [https://shivaarajput.github.io/](https://shivaarajput.github.io/)
 
-I am currently pursuing my Bachelor of Computer Applications (BCA) and have a keen interest in web development. I enjoy creating user-friendly and responsive web applications and continually seek to expand my knowledge in this field.
+## ✨ Features
 
-## Skills
+* **Dynamic Content:** All data (Skills, Projects, Experience) is fetched from Firestore. No need to edit HTML to update your resume.
+* **Admin Dashboard:** A password-protected GUI (`/admin.html`) to add/edit/delete content without touching code.
+* **Modern UI/UX:**
 
-- HTML, CSS, JavaScript
-- Responsive Web Design
-- Frontend Frameworks (e.g., React, Bootstrap)
-- Backend Technologies (e.g., Node.js, Express)
-- Version Control (Git)
+  * Dark/Light Mode toggle
+  * Soft Particle Network background (Canvas API)
+  * Glassmorphism navigation
+  * Fully Responsive (Mobile First)
+* **SEO Optimized:** Meta tags, semantic HTML, and fast loading speeds (Tailwind CSS via CDN)
+* **Custom 404:** Interactive "Lost in Space" error page
 
-## Projects
+## 🛠️ Tech Stack
 
-Here are some of the projects I've worked on:
+* **Frontend:** HTML5, JavaScript (ES6+), Tailwind CSS
+* **Backend (BaaS):** Firebase (Auth & Firestore)
+* **Hosting:** GitHub Pages
 
-1. **Quote Generator**
-   - Description: Brief description of the project.
-   - Technologies Used: HTML, CSS, JavaScript
+## 📂 Project Structure
 
-2. **My Portfolio**
-   - Description: Brief description of the project.
-   - Technologies Used: React, Node.js
+```
+.
+├── assets\images
+├── index.html       # Main Portfolio (The Viewer)
+├── admin.html       # Admin Dashboard (The Controller)
+├── 404.html         # Custom Error Page
+└── README.md        # Documentation
+└── LICENSE.md        # Documentation
+```
 
+## ⚙️ Setup & Configuration
 
-## Contact
+### 1. Firebase Setup
 
-Feel free to reach out to me:
+To make the Admin Panel work, you need your own Firebase project.
 
-- **Email:** [mailto:dhruvashivam@gmail.com]
-- **LinkedIn:** [https://www.linkedin.com/in/shivadhruva]
-- **GitHub:** [https://github.com/shivaarajput]
+1. Create a project at Firebase Console.
+2. Enable Authentication (Email/Password & Anonymous).
+3. Enable Firestore Database.
+4. Copy your `firebaseConfig` object.
+5. Update `index.html` and `admin.html` with your config keys.
 
-Thank you for visiting my portfolio! I'm excited to connect and collaborate on future projects.
+### 2. Admin Access
+
+1. Navigate to `your-site.github.io/admin.html`
+2. Login with the credentials you created in Firebase Auth
+3. Use the GUI Dashboard to add Skills, Projects, and Timeline entries
+4. Click **Save Configuration** to push changes live instantly
+
+## 🎨 Customization
+
+* **Icons:** Uses FontAwesome 6. You can use any class like `fab fa-react` or `fas fa-code`.
+* **Colors:** Powered by Tailwind. The primary theme color is Teal-600 (#0d9488). You can change this in the `tailwind.config` script tag in the HTML head.
+
+## 📝 License
+
+This project is licensed under the **MIT License**. You are free to use, modify, and distribute this project with proper attribution.
+
+---
+
+**Designed & Developed by Shivam Kumar**

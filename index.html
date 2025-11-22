@@ -1,658 +1,829 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="keywords"
-      content="shivam sable, portfolio, shivam, full stack dev, personal portfolio lifecodes, portfolio design, portfolio website, personal portfolio"
-    />
-    <meta
-      name="description"
-      content="Welcome to Shivam's Portfolio. Full-Stack Web Developer and Android App Developer"
-    />
 
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+
+<head>
+    <!-- Basic Meta -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO Meta -->
+    <title id="page-title">Shivam Kumar | Software Engineer</title>
+    <meta name="description"
+        content="Portfolio of Shivam Kumar — Software Engineer specializing in full-stack development, cybersecurity, Python, APIs, and modern web technologies." />
+    <meta name="keywords"
+        content="Shivam Kumar, portfolio, software engineer, full stack developer, web developer, cybersecurity, python developer, api developer, resume, projects" />
+    <meta name="author" content="Shivam Kumar" />
+
+    <!-- Theme Color (Browser Top Bar) -->
+    <meta name="theme-color" content="#0f172a" />
+
+    <!-- Open Graph -->
     <meta property="og:title" content="Portfolio | Shivam Kumar" />
-    <meta
-      property="og:description"
-      content="Welcome to Shivam's Portfolio. Full-Stack Web Developer and Android App Developer"
-    />
-    <meta
-      property="og:image"
-      content="https://i.ibb.co/xm8VgCr/profile-preview.png"
-    />
+    <meta property="og:description"
+        content="Explore the portfolio of Shivam Kumar — Software Engineer focused on full-stack development, cybersecurity, backend systems, and AI-powered solutions." />
+    <meta property="og:image" content="https://i.ibb.co/xm8VgCr/profile-preview.png" />
     <meta property="og:image:width" content="1024" />
     <meta property="og:image:height" content="1024" />
     <meta property="og:url" content="https://shivaarajput.github.io/" />
     <meta property="og:type" content="website" />
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="./assets/css/style.css" />
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Portfolio | Shivam Kumar" />
+    <meta name="twitter:description"
+        content="Discover Shivam Kumar's work in full-stack development, cybersecurity, and backend engineering." />
+    <meta name="twitter:image" content="https://i.ibb.co/xm8VgCr/profile-preview.png" />
+
+    <!-- Schema.org Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Person",
+      "name": "Shivam Kumar",
+      "url": "https://shivaarajput.github.io/",
+      "image": "https://i.ibb.co/xm8VgCr/profile-preview.png",
+      "jobTitle": "Software Engineer",
+      "description": "Software Engineer specializing in full-stack development, cybersecurity, Python, and modern web systems.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Bihar",
+        "addressCountry": "India"
+      }
+    }
+    </script>
+
+    <!-- Performance Preloads -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <!-- Font Awesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <!-- Favicon -->
-    <link
-      id="favicon"
-      rel="shortcut icon"
-      href="./assets/images/favicon.png"
-      type="image/x-png"
-    />
-    <title>Portfolio | Shivam Kumar</title>
-  </head>
-  <body oncontextmenu="return false">
-    <!-- pre loader -->
-    <!-- <div class="loader-container">
-  <img draggable="false" src="./assets/images/preloader.gif" alt="">
-</div> -->
+    <link id="favicon" rel="shortcut icon" href="./assets/images/favicon.png" type="image/x-png" />
 
-    <!-- navbar starts -->
-    <header>
-      <a href="/" class="logo"><i class="fab fa-node-js"></i> Shivam </a>
+    <!-- Custom Configuration -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Outfit', 'sans-serif'] },
+                    colors: {
+                        primary: '#0d9488',
+                        dark: '#0f172a',
+                        light: '#f9fafb',
+                    }
+                }
+            }
+        }
+    </script>
 
-      <div id="menu" class="fas fa-bars"></div>
-      <nav class="navbar">
-        <ul>
-          <li><a class="active" href="#home">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#education">Education</a></li>
-          <li><a href="#work">Work</a></li>
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
-    </header>
-    <!-- navbar ends -->
+    <style>
+        .glass-nav {
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
 
-    <!-- hero section starts -->
-    <section class="home" id="home">
-      <div id="particles-js"></div>
+        .dark .glass-nav {
+            background: rgba(15, 23, 42, 0.85);
+            border-color: rgba(255, 255, 255, 0.05);
+        }
 
-      <div class="content">
-        <h2>
-          Hi There,<br />
-          I'm Shivam <span>Kumar</span>
-        </h2>
-        <p>i am into <span class="typing-text"></span></p>
-        <a href="#about" class="btn"
-          ><span>About Me</span>
-          <i class="fas fa-arrow-circle-down"></i>
-        </a>
-        <div class="socials">
-          <ul class="social-icons">
-            <li>
-              <a
-                class="linkedin"
-                aria-label="LinkedIn"
-                href="https://www.linkedin.com/in/shivadhruva"
-                target="_blank"
-                ><i class="fab fa-linkedin"></i
-              ></a>
-            </li>
-            <li>
-              <a
-                class="github"
-                aria-label="GitHub"
-                href="https://github.com/shivaarajput"
-                target="_blank"
-                ><i class="fab fa-github"></i
-              ></a>
-            </li>
-            <li>
-              <a
-                class="twitter"
-                aria-label="Twitter"
-                href="https://www.instagram.com/shivamsinghamrajput"
-                target="_blank"
-                ><i class="fab fa-twitter"></i
-              ></a>
-            </li>
-            <li>
-              <a
-                class="telegram"
-                aria-label="Telegram"
-                href="https://t.me/TheMoonlightPhoenix"
-                target="_blank"
-                ><i class="fab fa-telegram-plane"></i
-              ></a>
-            </li>
-            <li>
-              <a
-                class="instagram"
-                aria-label="Instagram"
-                href="https://www.instagram.com/shivamsinghamrajput"
-                ><i class="fab fa-instagram" target="_blank"></i
-              ></a>
-            </li>
-            <li>
-              <a
-                class="dev"
-                aria-label="Dev"
-                href="https://devfolio.co/@shivaarajput"
-                target="_blank"
-                ><i class="fab fa-dev"></i
-              ></a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="image">
-        <img
-          draggable="false"
-          class="tilt"
-          src="./assets/images/profile-preview.png"
-          alt=""
-        />
-      </div>
-    </section>
-    <!-- hero section ends -->
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.85);
+            border-color: rgba(0, 0, 0, 0.05);
+        }
 
-    <!-- about section starts -->
-    <section class="about" id="about">
-      <h2 class="heading">
-        <i class="fas fa-user-alt"></i> About <span>Me</span>
-      </h2>
+        .text-gradient {
+            background: linear-gradient(to right, #2dd4bf, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-      <div class="row">
-        <div class="image">
-          <img
-            draggable="false"
-            class="tilt"
-            src="./assets/images/imgg.avif"
-            alt=""
-          />
-        </div>
-        <div class="content">
-          <h3>I'm Shivam</h3>
-          <span class="tag">Software Engineer</span>
+        .card-hover {
+            transition: all 0.3s ease;
+        }
 
-          <p>
-            I’m a Software Engineer based in Bihar Sharif, India. I am
-            passionate about enhancing my coding skills and building
-            applications. I am proficient in Django, Flask, Node.js, and Bash
-            scripting. Currently, I am focused on personal projects,
-            continuously improving my skills by building Full-Stack clones.
-          </p>
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px -10px rgba(45, 212, 191, 0.3);
+        }
 
-          <div class="box-container">
-            <!-- <div class="box">
-              <p><span> age: </span> 20</p>
-              <p><span> phone : </span> +91 XXX-XXX-XXXX</p>
-            </div> -->
-            <div class="box">
-              <p><span> email : </span> shivamsinghamrajput@gmail.com</p>
-              <p><span> place : </span> Bihar, India - 803101</p>
-            </div>
-          </div>
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
 
-          <div class="resumebtn">
-            <a
-              href="https://drive.google.com/file/d/1RfqMhjmb2dVyloQ1C3UKcunrGjqia-hO/view"
-              target="_blank"
-              class="btn"
-              ><span>Resume</span>
-              <i class="fas fa-chevron-right"></i>
+        .delay-100 {
+            animation-delay: 0.1s;
+        }
+
+        .delay-200 {
+            animation-delay: 0.2s;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body
+    class="bg-gray-50 dark:bg-dark text-gray-800 dark:text-gray-300 font-sans antialiased overflow-x-hidden selection:bg-primary selection:text-white transition-colors duration-300 relative">
+
+    <!-- Particle Canvas Background -->
+    <canvas id="particle-canvas" class="fixed top-0 left-0 w-full h-full -z-10"></canvas>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-nav top-0 start-0">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+            <a href="#" class="flex items-center space-x-2 group">
+                <div
+                    class="w-10 h-10 rounded-full bg-gradient-to-br from-teal-400 to-blue-500 flex items-center justify-center text-white font-bold text-xl group-hover:rotate-12 transition-transform">
+                    S</div>
+                <span class="self-center text-2xl font-bold whitespace-nowrap text-gray-900 dark:text-white">Shivam<span
+                        class="text-teal-400">.</span></span>
             </a>
-          </div>
+            <div class="flex items-center md:order-2 gap-2">
+                <button id="theme-toggle" type="button"
+                    class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 transition-all">
+                    <i id="theme-toggle-dark-icon" class="fas fa-moon hidden"></i>
+                    <i id="theme-toggle-light-icon" class="fas fa-sun hidden"></i>
+                </button>
+                <button data-collapse-toggle="navbar-default" type="button"
+                    class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none"
+                    aria-controls="navbar-default" aria-expanded="false" id="menu-btn">
+                    <span class="sr-only">Open main menu</span>
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+            <div class="hidden w-full md:block md:w-auto md:order-1" id="navbar-default">
+                <ul
+                    class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-transparent dark:bg-gray-800 md:dark:bg-transparent dark:border-gray-700">
+                    <li><a href="#home"
+                            class="block py-2 px-3 text-gray-900 hover:text-teal-400 dark:text-gray-300 dark:hover:text-teal-400 md:border-0 md:p-0">Home</a>
+                    </li>
+                    <li><a href="#about"
+                            class="block py-2 px-3 text-gray-900 hover:text-teal-400 dark:text-gray-300 dark:hover:text-teal-400 md:border-0 md:p-0">About</a>
+                    </li>
+                    <li><a href="#skills"
+                            class="block py-2 px-3 text-gray-900 hover:text-teal-400 dark:text-gray-300 dark:hover:text-teal-400 md:border-0 md:p-0">Skills</a>
+                    </li>
+                    <li><a href="#education"
+                            class="block py-2 px-3 text-gray-900 hover:text-teal-400 dark:text-gray-300 dark:hover:text-teal-400 md:border-0 md:p-0">Timeline</a>
+                    </li>
+                    <li><a href="#projects"
+                            class="block py-2 px-3 text-gray-900 hover:text-teal-400 dark:text-gray-300 dark:hover:text-teal-400 md:border-0 md:p-0">Projects</a>
+                    </li>
+                    <li><a href="#contact"
+                            class="block py-2 px-3 text-gray-900 hover:text-teal-400 dark:text-gray-300 dark:hover:text-teal-400 md:border-0 md:p-0">Contact</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center pt-20 relative overflow-hidden">
+        <div class="container mx-auto px-4 grid md:grid-cols-2 gap-8 items-center">
+            <div class="text-center md:text-left order-2 md:order-1 fade-in-up">
+                <div
+                    class="inline-block px-3 py-1 mb-4 text-sm font-semibold tracking-wider text-teal-600 dark:text-teal-300 uppercase bg-teal-100 dark:bg-teal-900/30 rounded-full border border-teal-200 dark:border-teal-800">
+                    Welcome to my world
+                </div>
+                <h1
+                    class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 dark:text-white md:text-6xl lg:text-7xl">
+                    Hi, I'm <span class="text-gradient" id="hero-name">Shivam Kumar</span>
+                </h1>
+                <h2 class="mb-6 text-2xl font-medium text-gray-500 dark:text-gray-400 h-10">
+                    I am a <span id="typing-text"
+                        class="text-teal-500 dark:text-teal-400 font-bold typing-cursor"></span>
+                </h2>
+                <p id="hero-desc"
+                    class="mb-8 text-lg font-normal text-gray-600 dark:text-gray-400 lg:text-xl max-w-lg mx-auto md:mx-0">
+                    Software Engineer based in Bihar, India. I build accessible, pixel-perfect, and performant web
+                    applications.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                    <a href="#contact"
+                        class="inline-flex justify-center items-center py-3 px-6 text-base font-medium text-center text-white rounded-lg bg-gradient-to-r from-teal-500 to-blue-600 hover:from-teal-600 hover:to-blue-700 shadow-lg shadow-teal-500/30 transition-all transform hover:scale-105">
+                        Hire Me
+                        <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M1 5h12m0 0L9 1m4 4L9 9" />
+                        </svg>
+                    </a>
+                    <a id="hero-github" href="#" target="_blank"
+                        class="inline-flex justify-center items-center py-3 px-6 text-base font-medium text-center text-gray-700 dark:text-gray-300 rounded-lg border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">
+                        <i class="fab fa-github mr-2"></i> GitHub
+                    </a>
+                </div>
+                <div id="social-links" class="mt-8 flex justify-center md:justify-start space-x-4">
+                    <!-- Dynamic Social Links -->
+                </div>
+            </div>
+            <div class="order-1 md:order-2 flex justify-center fade-in-up delay-200">
+                <div class="relative w-64 h-64 md:w-80 md:h-80">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-r from-teal-500 to-blue-600 rounded-full blur-xl opacity-50 animate-pulse">
+                    </div>
+                    <img id="hero-avatar"
+                        class="relative rounded-full w-full h-full object-cover border-4 border-white dark:border-gray-800 shadow-2xl"
+                        src="https://github.com/shivaarajput.png" alt="Profile">
+                    <div
+                        class="absolute -bottom-4 -right-4 bg-white dark:bg-gray-800 p-3 rounded-xl border border-gray-200 dark:border-gray-700 shadow-xl flex items-center gap-3">
+                        <div class="bg-green-500/20 p-2 rounded-lg"><i
+                                class="fas fa-code text-green-600 dark:text-green-400"></i></div>
+                        <div>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">Experience</p>
+                            <p class="text-sm font-bold text-gray-900 dark:text-white">3+ Years Coding</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
-    <!-- about section ends -->
 
-    <!-- skills section starts -->
-    <section class="skills" id="skills">
-      <h2 class="heading">
-        <i class="fas fa-laptop-code"></i> Skills & <span>Abilities</span>
-      </h2>
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white/50 dark:bg-[#111827]/50 transition-colors duration-300 backdrop-blur-sm">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">About <span
+                        class="text-teal-500 dark:text-teal-400">Me</span></h2>
+                <div class="w-20 h-1 bg-teal-500 mx-auto rounded-full"></div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <h3 class="text-2xl font-semibold text-gray-900 dark:text-white"><span id="about-role">Software
+                            Engineer</span></h3>
+                    <p id="about-bio" class="text-gray-600 dark:text-gray-400 leading-relaxed">Loading...</p>
 
-      <div class="container">
-        <div class="row" id="skillsContainer">
-          <!-- <div class="bar">
-              <div class="info">
-                <img src="https://img.icons8.com/color/48/000000/adobe-xd.png"/>
-                <span>AdobeXD</span>
-              </div>
-            </div> -->
+                    <div class="grid grid-cols-2 gap-4 mt-6">
+                        <div
+                            class="border border-gray-200 dark:border-gray-700 p-4 rounded-lg bg-white dark:bg-gray-800 shadow-sm">
+                            <i class="fas fa-map-marker-alt text-teal-500 dark:text-teal-400 mb-2"></i>
+                            <h4 class="text-gray-900 dark:text-white font-medium">Location</h4>
+                            <p id="about-location" class="text-sm text-gray-500 dark:text-gray-400">...</p>
+                        </div>
+                        <div
+                            class="border border-gray-200 dark:border-gray-700 p-4 rounded-lg bg-white dark:bg-gray-800 shadow-sm">
+                            <i class="fas fa-graduation-cap text-teal-500 dark:text-teal-400 mb-2"></i>
+                            <h4 class="text-gray-900 dark:text-white font-medium">Education</h4>
+                            <p id="about-education" class="text-sm text-gray-500 dark:text-gray-400">...</p>
+                        </div>
+                    </div>
+                    <!-- View Resume Button -->
+                    <a id="resume-view-btn" href="#" target="_blank"
+                        class="inline-flex items-center mt-4 text-white bg-blue-600 hover:bg-blue-500 dark:bg-blue-500 dark:hover:bg-blue-400 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 transition shadow-md">
+                        <i class="fas fa-eye mr-2"></i> View Resume
+                    </a>
+
+                    <!-- Download Resume Button -->
+                    <a id="resume-download-btn" href="#" target="_blank"
+                        class="inline-flex items-center mt-4 ml-3 text-white bg-green-600 hover:bg-green-500 dark:bg-green-500 dark:hover:bg-green-400 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 transition shadow-md">
+                        <i class="fas fa-download mr-2"></i> Download Resume
+                    </a>
+
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="space-y-4 mt-8">
+                        <div
+                            class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg text-center border-b-4 border-teal-500">
+                            <i class="fab fa-python text-4xl text-yellow-500 mb-2"></i>
+                            <p class="text-gray-800 dark:text-white">Python</p>
+                        </div>
+                        <div
+                            class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg text-center border-b-4 border-green-500">
+                            <i class="fab fa-node text-4xl text-green-600 mb-2"></i>
+                            <p class="text-gray-800 dark:text-white">Node.js</p>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <div
+                            class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg text-center border-b-4 border-red-500">
+                            <i class="fas fa-fire text-4xl text-red-500 mb-2"></i>
+                            <p class="text-gray-800 dark:text-white">Django</p>
+                        </div>
+                        <div
+                            class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg text-center border-b-4 border-blue-500">
+                            <i class="fab fa-js text-4xl text-blue-500 mb-2"></i>
+                            <p class="text-gray-800 dark:text-white">JS</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </section>
-    <!-- skills section ends -->
 
-    <!-- education section starts -->
-    <section class="education" id="education">
-      <h1 class="heading">
-        <i class="fas fa-graduation-cap"></i> My <span>Education</span>
-      </h1>
-
-      <p class="qoute">
-        Education is not the learning of facts, but the training of the mind to
-        think.
-      </p>
-
-      <div class="box-container">
-        <div class="box">
-          <div class="image">
-            <img
-              draggable="false"
-              src="./assets/images/educat/bca.jpg"
-              alt=""
-            />
-          </div>
-          <div class="content">
-            <h3>Bachelor of Computer Applications</h3>
-            <p>Nalanda College | Patliputra University</p>
-            <h4>2022-2025 | Pursuing</h4>
-          </div>
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 transition-colors duration-300">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">My <span
+                        class="text-teal-500 dark:text-teal-400">Skills</span></h2>
+                <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">Technologies I work with.</p>
+            </div>
+            <div id="skills-container" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                <!-- Skills injected via JS -->
+            </div>
         </div>
-
-        <!-- Intermediate Box -->
-        <div class="box">
-          <div class="image">
-            <img
-              draggable="false"
-              src="./assets/images/educat/intermediate.jpg"
-              alt="Intermediate Image"
-            />
-          </div>
-          <div class="content">
-            <h3>Intermediate</h3>
-            <p>Sardar Patel Memorial College | BSEB</p>
-            <h4>2020-2022 | Completed</h4>
-          </div>
-        </div>
-
-        <!-- Matric Box -->
-        <div class="box">
-          <div class="image">
-            <img
-              draggable="false"
-              src="./assets/images/educat/matric.jpg"
-              alt="Matric Image"
-            />
-          </div>
-          <div class="content">
-            <h3>Matric</h3>
-            <p>Cambridge School | CBSE</p>
-            <h4>2019-2020 | Completed</h4>
-          </div>
-        </div>
-      </div>
     </section>
-    <!-- education section ends -->
 
-    <!-- work project section starts -->
-    <section class="work" id="work">
-      <h2 class="heading">
-        <i class="fas fa-laptop-code"></i> Projects <span>Made</span>
-      </h2>
-
-      <div class="box-container">
-        <!-- <div class="box tilt">
-      <img draggable="false" src="./assets/images/projects/portfolio1.PNG" alt="" />
-      <div class="content">
-        <div class="tag">
-        <h3>Portfolio Website</h3>
+    <!-- Timeline Section -->
+    <section id="education"
+        class="py-20 bg-white/50 dark:bg-[#111827]/50 transition-colors duration-300 backdrop-blur-sm">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">Education & <span
+                        class="text-teal-500 dark:text-teal-400">Experience</span></h2>
+                <p class="text-gray-600 dark:text-gray-400">My academic journey and professional growth.</p>
+            </div>
+            <div id="timeline-container" class="relative max-w-4xl mx-auto">
+                <!-- Timeline injected via JS -->
+            </div>
         </div>
-        <div class="desc">
-          <p>Personal portfolio website. Don't need much info about it, just scroll down. You're here only!</p>
-          <div class="btns">
-            <a href="#" class="btn" target="_blank"><i class="fas fa-eye"></i> View</a>
-            <a href="https://github.com/jigar-sable/Portfolio-Website" class="btn" target="_blank">Code <i class="fas fa-code"></i></a>
-          </div>
-        </div>
-      </div>
-    </div> -->
-      </div>
-
-      <!--
-      <div class="viewall">
-        <a href="/projects" class="btn"
-          ><span>View All</span>
-          <i class="fas fa-arrow-right"></i>
-        </a>
-      </div>
--->
     </section>
-    <!-- work project section ends -->
 
-    <!-- experience section starts -->
-    <section class="experience" id="experience">
-      <h2 class="heading"><i class="fas fa-briefcase"></i> Experience</h2>
-
-      <div class="timeline">
-        <!-- First Timeline Item -->
-        <div class="container right">
-          <div class="content">
-            <div class="tag">
-              <h2>BCA Student</h2>
-              <!-- Education -->
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 transition-colors duration-300">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">Featured <span
+                        class="text-teal-500 dark:text-teal-400">Projects</span></h2>
+                <p class="text-gray-600 dark:text-gray-400">Some of my recent works.</p>
             </div>
-            <div class="desc">
-              <h3>Nalanda College</h3>
-              <!-- College Name -->
-              <p>June 2022 - Present</p>
-              <!-- Duration -->
+            <div id="projects-container" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Projects injected via JS -->
             </div>
-          </div>
         </div>
-
-        <!-- Second Timeline Item -->
-        <div class="container left">
-          <div class="content">
-            <div class="tag">
-              <h2>Personal Projects</h2>
-              <!-- Projects -->
-            </div>
-            <div class="desc">
-              <h3>Self-Learning</h3>
-              <!-- Learning or Building Projects -->
-              <p>2023 - Present</p>
-              <!-- Duration -->
-              <p>
-                Working on building web applications and learning languages like
-                HTML, CSS, JavaScript, Python.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Third Timeline Item -->
-        <div class="container right">
-          <div class="content">
-            <div class="tag">
-              <h2>Online Courses</h2>
-              <!-- Online Learning -->
-            </div>
-            <div class="desc">
-              <h3>Platforms like Udemy, Coursera, Youtube etc.</h3>
-              <!-- Platforms -->
-              <p>2023 - Present</p>
-              <!-- Duration -->
-              <p>
-                Completed courses on web development, data structures, and
-                programming basics.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Fourth Timeline Item -->
-        <div class="container left">
-          <div class="content">
-            <div class="tag">
-              <h2>Hackathons / Coding Challenges</h2>
-              <!-- Competitions -->
-            </div>
-            <div class="desc">
-              <h3>Participating in Online Challenges</h3>
-              <!-- Events -->
-              <p>2023 - Present</p>
-              <!-- Duration -->
-              <p>
-                Joined hackathons and coding platforms like LeetCode, HackerRank
-                to practice problem-solving skills.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Fifth Timeline Item -->
-        <div class="container right">
-          <div class="content">
-            <div class="tag">
-              <h2>Volunteering</h2>
-              <!-- Volunteering -->
-            </div>
-            <div class="desc">
-              <h3>College Events / Community Work</h3>
-              <!-- Volunteering Description -->
-              <p>2023 - Present</p>
-              <!-- Duration -->
-              <p>
-                Helped organize tech events at college, worked with peers on
-                open-source projects.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!--
-        <div class="container right">
-          <div class="content">
-            <div class="tag">
-              <h2>Content Creator</h2>
-            </div>
-            <div class="desc">
-              <h3>techoverflows</h3>
-              <p>June 24- present</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="container left">
-          <div class="content">
-            <div class="tag">
-              <h2>Working</h2>
-            </div>
-            <div class="desc">
-              <h3>Software Engineer</h3>
-              <p>Nov 2023 - present</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="container right">
-          <div class="content">
-            <div class="tag">
-              <h2>Coaching</h2>
-            </div>
-            <div class="desc">
-              <h3>Sky Coding Institute</h3>
-              <p>June 24 - present</p>
-            </div>
-          </div>
-        </div>
-
-
-        <div class="morebtn">
-          <a href="/experience" class="btn"
-            ><span>View All</span>
-            <i class="fas fa-arrow-right"></i>
-          </a>
-        </div>
--->
-      </div>
     </section>
-    <!-- experience section ends -->
 
-    <!-- contact section starts -->
-    <section class="contact" id="contact">
-      <h2 class="heading">
-        <i class="fas fa-headset"></i> Get in <span>Touch</span>
-      </h2>
-
-      <div class="container">
-        <div class="content">
-          <div class="image-box">
-            <img draggable="false" src="./assets/images/contact1.png" alt="" />
-          </div>
-
-          <!-- Replace with your Access Key -->
-          <form
-            id="contact-form"
-            action="https://api.web3forms.com/submit"
-            method="POST"
-          >
-            <input
-              type="hidden"
-              name="access_key"
-              value="5c9312d4-241b-4832-a462-3e5656d4e9e2"
-            />
-
-            <div class="form-group">
-              <div class="field">
-                <input type="text" name="name" placeholder="Name" required />
-                <i class="fas fa-user"></i>
-              </div>
-              <div class="field">
-                <input type="text" name="email" placeholder="Email" required />
-                <i class="fas fa-envelope"></i>
-              </div>
-              <div class="field">
-                <input type="text" name="phone" placeholder="Phone" />
-                <i class="fas fa-phone-alt"></i>
-              </div>
-              <div class="message">
-                <textarea
-                  placeholder="Message"
-                  name="message"
-                  required
-                ></textarea>
-                <i class="fas fa-comment-dots"></i>
-              </div>
+    <!-- Contact Section -->
+    <section id="contact"
+        class="py-20 bg-white/50 dark:bg-[#111827]/50 transition-colors duration-300 backdrop-blur-sm">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">Get in <span
+                            class="text-teal-500 dark:text-teal-400">Touch</span></h2>
+                    <p class="text-gray-600 dark:text-gray-400 mb-8">Looking for new opportunities. Say hi!</p>
+                    <div class="space-y-6" id="contact-info">
+                        <!-- Contact info injected via JS -->
+                    </div>
+                </div>
+                <div
+                    class="bg-white dark:bg-gray-800 p-8 rounded-xl border border-gray-200 dark:border-gray-700 shadow-xl">
+                    <form class="space-y-6">
+                        <div>
+                            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
+                            <input type="text"
+                                class="bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white text-sm rounded-lg block w-full p-3"
+                                placeholder="John Doe">
+                        </div>
+                        <div>
+                            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                            <input type="email"
+                                class="bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white text-sm rounded-lg block w-full p-3"
+                                placeholder="name@example.com">
+                        </div>
+                        <div>
+                            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Message</label>
+                            <textarea rows="4"
+                                class="bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white text-sm rounded-lg block w-full p-3"></textarea>
+                        </div>
+                        <button type="button"
+                            class="w-full text-white bg-gradient-to-r from-teal-500 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-teal-300/30 font-medium rounded-lg text-sm px-5 py-3">Send
+                            Message</button>
+                    </form>
+                </div>
             </div>
-            <div class="button-area">
-              <button type="submit">
-                Submit <i class="fa fa-paper-plane"></i>
-              </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer
+        class="bg-white dark:bg-gray-900 py-8 border-t border-gray-200 dark:border-gray-800 transition-colors duration-300">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-4 md:mb-0">
+                <span class="text-2xl font-bold text-gray-900 dark:text-white">Shivam<span
+                        class="text-teal-500 dark:text-teal-400">.</span></span>
             </div>
-          </form>
+            <div class="text-gray-600 dark:text-gray-400 text-sm text-center md:text-right">
+                <p>&copy; 2024 Shivam Kumar. All rights reserved.</p>
+                <p class="mt-1">Designed with <i class="fas fa-heart text-red-500 mx-1"></i> by Shivam</p>
+            </div>
         </div>
-      </div>
-    </section>
-    <!-- contact section ends -->
+    </footer>
 
-    <!-- footer section starts -->
-    <section class="footer">
-      <div class="box-container">
-        <div class="box">
-          <h3>Shivam's Portfolio</h3>
-          <p>
-            Thank you for visiting my personal portfolio website. Connect with
-            me over socials. <br />
-            <br />
-            Keep Rising 🚀. Connect with me over live chat!
-          </p>
-        </div>
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js';
+        import { getFirestore, doc, onSnapshot } from 'https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js';
+        import { getAuth, signInAnonymously, signInWithCustomToken } from 'https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js';
 
-        <div class="box">
-          <h3>quick links</h3>
-          <a href="#home"><i class="fas fa-chevron-circle-right"></i> home</a>
-          <a href="#about"><i class="fas fa-chevron-circle-right"></i> about</a>
-          <a href="#skills"
-            ><i class="fas fa-chevron-circle-right"></i> skills</a
-          >
-          <a href="#education"
-            ><i class="fas fa-chevron-circle-right"></i> education</a
-          >
-          <a href="#work"><i class="fas fa-chevron-circle-right"></i> work</a>
-          <a href="#experience"
-            ><i class="fas fa-chevron-circle-right"></i> experience</a
-          >
-        </div>
+        // -----------------------------------------
+        // CONFIGURATION
+        // -----------------------------------------
+        // Initialize
+        const firebaseConfig = {
+            apiKey: "AIzaSyCXxJ8102DXfA83-Z7QCRl4XZW0TmcOz5Y",
+            authDomain: "shivaarajput-68dd6.firebaseapp.com",
+            projectId: "shivaarajput-68dd6",
+            storageBucket: "shivaarajput-68dd6.firebasestorage.app",
+            messagingSenderId: "685063111056",
+            appId: "1:685063111056:web:8bb34eb5707cf5d1e0f315"
+        };
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const appId = 'my-portfolio'; // Hardcoded ID for stability
 
-        <div class="box">
-          <h3>contact info</h3>
-          <p><i class="fas fa-phone"></i>+91 620-028-5628</p>
-          <p><i class="fas fa-envelope"></i>shivamsinghamrajput@gmail.com</p>
-          <p><i class="fas fa-map-marked-alt"></i>Bihar, India-803101</p>
-          <div class="share">
-            <a
-              href="https://www.linkedin.com/in/shivadhruva"
-              class="fab fa-linkedin"
-              aria-label="LinkedIn"
-              target="_blank"
-            ></a>
-            <a
-              href="https://github.com/shivaarajput"
-              class="fab fa-github"
-              aria-label="GitHub"
-              target="_blank"
-            ></a>
-            <a
-              href="mailto:shivamsinghamrajput+portfolio@gmail.com"
-              class="fas fa-envelope"
-              aria-label="Mail"
-              target="_blank"
-            ></a>
-            <a
-              href="https://ig.me/m/shivamsinghamrajput"
-              class="fab fa-twitter"
-              aria-label="Twitter"
-              target="_blank"
-            ></a>
-            <a
-              href="https://t.me/themoonlightphoenix"
-              class="fab fa-telegram-plane"
-              aria-label="Telegram"
-              target="_blank"
-            ></a>
-          </div>
-        </div>
-      </div>
+        // -----------------------------------------
+        // DEFAULT DATA (FALLBACK)
+        // -----------------------------------------
+        const defaultData = {
+            personal: {
+                name: "Shivam Kumar",
+                titles: ["Software Engineer", "Full Stack Developer"],
+                desc: "Software Engineer based in Bihar, India. Building performant web apps.",
+                github: "https://github.com/shivaarajput",
+                location: "Bihar, India",
+                education_summary: "BCA (Pursuing)",
+                resume: "#",
+                social: [
+                    { icon: "fab fa-linkedin", link: "https://linkedin.com" },
+                    { icon: "fas fa-envelope", link: "mailto:shivamsinghamrajput@gmail.com" },
+                    { icon: "fab fa-instagram", link: "#" }
+                ],
+                contact: {
+                    phone: "+91 620-028-5628",
+                    email: "shivamsinghamrajput@gmail.com",
+                    address: "Bihar, India - 803101"
+                }
+            },
+            about: {
+                role: "Software Engineer",
+                bio: "I am passionate about enhancing my coding skills and building applications. Proficient in Django, Flask, Node.js."
+            },
+            skills: [
+                { name: "Python", icon: "fab fa-python", color: "text-yellow-500" },
+                { name: "Django", icon: "fas fa-leaf", color: "text-green-600" },
+                { name: "JS", icon: "fab fa-js", color: "text-yellow-400" },
+                { name: "Git", icon: "fab fa-git-alt", color: "text-red-500" }
+            ],
+            timeline: [
+                { year: "2022-2025", title: "BCA", subtitle: "Nalanda College", desc: "Pursuing Bachelor's Degree", icon: "fas fa-graduation-cap" },
+                { year: "2023-Present", title: "Personal Projects", subtitle: "Self-Learning", desc: "Building Full-Stack apps", icon: "fas fa-laptop-code" }
+            ],
+            projects: [
+                { title: "Portfolio Website", desc: "Modern portfolio with Tailwind", tags: ["HTML", "CSS", "JS"], icon: "fas fa-laptop-code", source_link: "#", live_link: "#" },
+                { title: "E-Commerce", desc: "Full stack app with Django", tags: ["Python", "Django"], icon: "fas fa-shopping-cart", source_link: "#", live_link: "#" }
+            ]
+        };
 
-      <h1 class="credit">
-        Designed with <i class="fa fa-heart pulse"></i> by
-        <a href="https://www.linkedin.com/in/shivadhruva"> shiva </a>
-      </h1>
-    </section>
-    <!-- footer section ends -->
+        // -----------------------------------------
+        // AUTH & DATA FETCHING
+        // -----------------------------------------
+        const initAuth = async () => {
+            try {
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    await signInWithCustomToken(auth, __initial_auth_token);
+                } else {
+                    await signInAnonymously(auth);
+                }
+            } catch (error) {
+                console.warn("Auth fallback used (Anonymous not enabled or Failed). Default data might be shown if rules deny public read.", error);
+            }
 
-    <!-- scroll top btn -->
-    <a
-      href="#home"
-      aria-label="ScrollTop"
-      class="fas fa-angle-up"
-      id="scroll-top"
-    ></a>
-    <!-- scroll back to top -->
+            const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'content', 'main');
 
-    <!-- ==== ALL MAJOR JAVASCRIPT CDNS STARTS ==== -->
-    <!-- jquery cdn -->
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
+            onSnapshot(docRef, (docSnap) => {
+                if (docSnap.exists()) {
+                    renderSite({ ...defaultData, ...docSnap.data() }); // Merge to ensure no missing fields
+                } else {
+                    renderSite(defaultData);
+                }
+            }, (error) => {
+                console.error("Data Load Error:", error);
+                renderSite(defaultData);
+            });
+        };
 
-    <!-- typed.js cdn -->
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.5/typed.min.js"
-      integrity="sha512-1KbKusm/hAtkX5FScVR5G36wodIMnVd/aP04af06iyQTkD17szAMGNmxfNH+tEuFp3Og/P5G32L1qEC47CZbUQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
+        initAuth();
 
-    <!-- particle.js links -->
-    <script src="./assets/js/particles.min.js"></script>
-    <script src="./assets/js/app.js"></script>
+        // -----------------------------------------
+        // RENDERING LOGIC
+        // -----------------------------------------
+        function renderSite(data) {
+            // Personal & Hero
+            const personal = data.personal || defaultData.personal;
+            setImage('hero-avatar', personal.avatar)
+            setText('hero-name', personal.name);
+            setText('hero-desc', personal.desc);
+            setHref('hero-github', personal.github);
+            setText('about-location', personal.location);
+            setText('about-education', personal.education_summary);
+            setHref('resume-view-btn', personal.resume);
+            setHref('resume-download-btn', personal.resume_download);
 
-    <!-- vanilla tilt.js links -->
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"
-      integrity="sha512-SttpKhJqONuBVxbRcuH0wezjuX+BoFoli0yPsnrAADcHsQMW8rkR84ItFHGIkPvhnlRnE2FaifDOUw+EltbuHg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
+            initTyping(personal.titles || ["Developer"]);
 
-    <!-- scroll reveal anim -->
-    <script src="https://unpkg.com/scrollreveal"></script>
+            // Social Links
+            const socialContainer = document.getElementById('social-links');
+            if (socialContainer) {
+                const socials = personal.social || defaultData.personal.social;
+                socialContainer.innerHTML = socials.map(s =>
+                    `<a href="${s.link || '#'}" target="_blank" class="text-gray-500 hover:text-teal-500 transition-colors text-2xl"><i class="${s.icon}"></i></a>`
+                ).join('');
+            }
 
-    <script
-      type="text/javascript"
-      src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"
-    ></script>
+            // About
+            const about = data.about || defaultData.about;
+            setText('about-role', about.role);
+            setText('about-bio', about.bio);
 
-    <!-- ==== ALL MAJOR JAVASCRIPT CDNS ENDS ==== -->
+            // Skills
+            const skillsContainer = document.getElementById('skills-container');
+            if (skillsContainer) {
+                const skills = data.skills || defaultData.skills;
+                skillsContainer.innerHTML = skills.map(s => `
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl flex flex-col items-center justify-center gap-3 card-hover group border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-lg">
+                        <i class="${s.icon} text-5xl ${s.color} group-hover:scale-110 transition-transform"></i>
+                        <span class="text-gray-700 dark:text-gray-300 font-medium">${s.name}</span>
+                    </div>
+                `).join('');
+            }
 
-    <script src="./assets/js/script.js"></script>
-  </body>
+            // Timeline
+            const timelineContainer = document.getElementById('timeline-container');
+            if (timelineContainer) {
+                const timeline = data.timeline || defaultData.timeline;
+                timelineContainer.innerHTML = '<div class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gray-300 dark:bg-gray-700 rounded-full hidden md:block"></div>' +
+                    timeline.map((item, index) => {
+                        const isLeft = index % 2 === 0;
+                        return `
+                    <div class="flex flex-col md:flex-row items-center justify-between mb-12 w-full">
+                        <div class="w-full md:w-5/12 ${isLeft ? 'order-2 md:order-1' : 'order-2 md:order-3'}">
+                            <div class="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700 shadow-lg hover:border-teal-500 transition-colors">
+                                <span class="text-teal-600 dark:text-teal-400 font-bold text-sm">${item.year}</span>
+                                <h3 class="text-xl font-bold text-gray-900 dark:text-white mt-1">${item.title}</h3>
+                                <p class="text-gray-500 dark:text-gray-400 text-sm mb-2">${item.subtitle}</p>
+                                <p class="text-gray-600 dark:text-gray-500 text-sm">${item.desc}</p>
+                            </div>
+                        </div>
+                        <div class="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 bg-teal-500 rounded-full border-4 border-gray-100 dark:border-gray-900 hidden md:flex items-center justify-center order-1 md:order-2">
+                            <i class="${item.icon || 'fas fa-circle'} text-white text-xs"></i>
+                        </div>
+                        <div class="w-full md:w-5/12 order-2 ${isLeft ? 'md:order-3' : 'md:order-1'}"></div>
+                    </div>`;
+                    }).join('');
+            }
+
+            // Projects (Two Links Logic)
+            const projContainer = document.getElementById('projects-container');
+            if (projContainer) {
+                const projects = data.projects || defaultData.projects;
+                projContainer.innerHTML = projects.map(p => {
+                    const sourceLink = p.source_link || p.link || '#';
+                    const liveLink = p.live_link || '#';
+
+                    return `
+                    <div class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700 group card-hover shadow-md hover:shadow-xl">
+                        <div class="h-48 bg-gray-100 dark:bg-gray-700 relative flex items-center justify-center overflow-hidden">
+                            <i class="${p.icon || 'fas fa-code'} text-6xl text-gray-300 dark:text-gray-600 group-hover:text-teal-500 dark:group-hover:text-teal-400 transition-colors"></i>
+                            <!-- Two Links Overlay -->
+                            <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
+                                <a href="${sourceLink}" target="_blank" class="p-3 bg-gray-800 rounded-full text-white hover:bg-teal-500 transition-colors" title="Source Code">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="${liveLink}" target="_blank" class="p-3 bg-gray-800 rounded-full text-white hover:bg-blue-500 transition-colors" title="Live Demo">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">${p.title}</h3>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">${p.desc}</p>
+                            <div class="flex flex-wrap gap-2">
+                                ${(p.tags || []).map(t => `<span class="px-3 py-1 bg-gray-100 dark:bg-gray-900 text-teal-600 dark:text-teal-400 text-xs rounded-full border border-gray-200 dark:border-gray-700">${t}</span>`).join('')}
+                            </div>
+                        </div>
+                    </div>`;
+                }).join('');
+            }
+
+            // Contact Info
+            const contactContainer = document.getElementById('contact-info');
+            if (contactContainer) {
+                const c = personal.contact || defaultData.personal.contact;
+                contactContainer.innerHTML = `
+                    <div class="flex items-center space-x-4"><div class="w-12 h-12 rounded-full bg-white dark:bg-gray-800 shadow-md flex items-center justify-center text-teal-500"><i class="fas fa-phone-alt"></i></div><div><h4 class="text-gray-900 dark:text-white font-medium">Phone</h4><p class="text-gray-600 dark:text-gray-400">${c.phone}</p></div></div>
+                    <div class="flex items-center space-x-4"><div class="w-12 h-12 rounded-full bg-white dark:bg-gray-800 shadow-md flex items-center justify-center text-teal-500"><i class="fas fa-envelope"></i></div><div><h4 class="text-gray-900 dark:text-white font-medium">Email</h4><p class="text-gray-600 dark:text-gray-400">${c.email}</p></div></div>
+                    <div class="flex items-center space-x-4"><div class="w-12 h-12 rounded-full bg-white dark:bg-gray-800 shadow-md flex items-center justify-center text-teal-500"><i class="fas fa-map-marker-alt"></i></div><div><h4 class="text-gray-900 dark:text-white font-medium">Location</h4><p class="text-gray-600 dark:text-gray-400">${c.address}</p></div></div>
+                `;
+            }
+        }
+
+        function setText(id, val) { if (document.getElementById(id)) document.getElementById(id).textContent = val || ''; }
+        function setHref(id, val) { if (document.getElementById(id)) document.getElementById(id).href = val || '#'; }
+        function setImage(id, src) { if (document.getElementById(id)) document.getElementById(id).src = src || ''; }
+
+        // -----------------------------------------
+        // UI LOGIC (Particles, Theme, Typing)
+        // -----------------------------------------
+
+        // Theme Logic
+        const themeBtn = document.getElementById('theme-toggle');
+        const darkIcon = document.getElementById('theme-toggle-dark-icon');
+        const lightIcon = document.getElementById('theme-toggle-light-icon');
+
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            if (lightIcon) lightIcon.classList.remove('hidden');
+            document.documentElement.classList.add('dark');
+        } else {
+            if (darkIcon) darkIcon.classList.remove('hidden');
+            document.documentElement.classList.remove('dark');
+        }
+
+        if (themeBtn) {
+            themeBtn.addEventListener('click', () => {
+                document.documentElement.classList.toggle('dark');
+                const isDark = document.documentElement.classList.contains('dark');
+                darkIcon.classList.toggle('hidden', !isDark);
+                lightIcon.classList.toggle('hidden', isDark);
+                localStorage.setItem('color-theme', isDark ? 'dark' : 'light');
+            });
+        }
+
+        // Mobile Menu
+        const menuBtn = document.getElementById('menu-btn');
+        const navbar = document.getElementById('navbar-default');
+
+        // Toggle menu on button click
+        if (menuBtn) {
+            menuBtn.addEventListener('click', () => {
+                navbar.classList.toggle('hidden');
+            });
+        }
+
+        // Auto-close menu on any nav link click
+        document.querySelectorAll('#navbar-default a').forEach(link => {
+            link.addEventListener('click', () => {
+                navbar.classList.add('hidden'); // Close the menu
+            });
+        });
+
+
+        let typingInterval;
+
+        function initTyping(texts) {
+            if (typingInterval) clearInterval(typingInterval);
+
+            let count = 0;
+            let index = 0;
+
+            function type() {
+                if (count >= texts.length) count = 0;
+
+                const currentText = texts[count];
+                const el = document.getElementById("typing-text");
+
+                if (el) el.textContent = currentText.slice(0, index++);
+
+                if (index > currentText.length) {
+                    count++;
+                    index = 0;
+                    clearInterval(typingInterval);
+
+                    // Pause before typing next text
+                    setTimeout(() => {
+                        typingInterval = setInterval(type, 100);
+                    }, 1000);
+                }
+            }
+
+            typingInterval = setInterval(type, 100);
+        }
+
+
+        // Particle Animation (Soft & Optimized)
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        let particlesArray;
+
+        const resizeCanvas = () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', () => { resizeCanvas(); init(); });
+
+        let mouse = { x: null, y: null, radius: (canvas.height / 90) * (canvas.width / 90) };
+        window.addEventListener('mousemove', (e) => { mouse.x = e.x; mouse.y = e.y; });
+        window.addEventListener('mouseout', () => { mouse.x = undefined; mouse.y = undefined; });
+
+        class Particle {
+            constructor(x, y, dX, dY, size) { this.x = x; this.y = y; this.dX = dX; this.dY = dY; this.size = size; }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                const isDark = document.documentElement.classList.contains('dark');
+                // Soft colors for elegance
+                ctx.fillStyle = isDark ? 'rgba(220, 220, 220, 0.55)' : 'rgba(100, 100, 100, 0.55)';
+                ctx.fill();
+            }
+            update() {
+                if (this.x > canvas.width || this.x < 0) this.dX = -this.dX;
+                if (this.y > canvas.height || this.y < 0) this.dY = -this.dY;
+
+                let dx = mouse.x - this.x;
+                let dy = mouse.y - this.y;
+                let distance = Math.sqrt(dx * dx + dy * dy);
+                const repelRadius = 110;
+
+                if (distance < repelRadius) {
+                    const force = (repelRadius - distance) / repelRadius;
+                    const moveX = (dx / distance) * force * 3;
+                    const moveY = (dy / distance) * force * 3;
+                    this.x -= moveX; this.y -= moveY;
+                } else {
+                    this.x += this.dX * 0.6; this.y += this.dY * 0.6;
+                }
+                this.draw();
+            }
+        }
+
+        function init() {
+            particlesArray = [];
+            let numberOfParticles = (canvas.height * canvas.width) / 18000;
+            for (let i = 0; i < numberOfParticles; i++) {
+                let size = (Math.random() * 2.5) + 1.2;
+                let x = Math.random() * (innerWidth - size * 4) + size * 2;
+                let y = Math.random() * (innerHeight - size * 4) + size * 2;
+                let dX = (Math.random() * 1.5) - 0.75;
+                let dY = (Math.random() * 1.5) - 0.75;
+                particlesArray.push(new Particle(x, y, dX, dY, size));
+            }
+        }
+
+        function connect() {
+            for (let a = 0; a < particlesArray.length; a++) {
+                for (let b = a; b < particlesArray.length; b++) {
+                    let dist = (particlesArray[a].x - particlesArray[b].x) ** 2 + (particlesArray[a].y - particlesArray[b].y) ** 2;
+                    if (dist < 9000) {
+                        let opacity = 1 - dist / 9000;
+                        const isDark = document.documentElement.classList.contains('dark');
+                        ctx.strokeStyle = isDark ? `rgba(220,220,220,${opacity * 0.6})` : `rgba(100,100,100,${opacity * 0.6})`;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+                        ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particlesArray.forEach(p => p.update());
+            connect();
+        }
+
+        init();
+        animate();
+    </script>
+</body>
+
 </html>

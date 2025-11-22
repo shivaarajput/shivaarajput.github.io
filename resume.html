@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shivam Kumar - Software Engineer</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --accent: #3498db;
+            --text-dark: #333;
+            --text-light: #666;
+            --border: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 40px;
+            background: #fff;
+        }
+
+        /* Print Button Styles */
+        .print-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .print-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: background 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .print-btn:hover {
+            background-color: var(--accent);
+        }
+
+        /* Header Layout */
+        header {
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .header-left h1 {
+            font-size: 36px;
+            margin: 0;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .header-left .role {
+            font-size: 18px;
+            color: var(--accent);
+            font-weight: 600;
+            margin-top: 5px;
+        }
+
+        .header-right {
+            text-align: right;
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        .header-right a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        /* Section Styling */
+        section {
+            margin-bottom: 25px;
+        }
+
+        h2 {
+            font-size: 16px;
+            text-transform: uppercase;
+            color: var(--primary);
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+            letter-spacing: 1.2px;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            gap: 10px;
+            font-size: 14px;
+        }
+        
+        .skill-category {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* Project & Exp Styling */
+        .entry {
+            margin-bottom: 20px;
+        }
+
+        .entry-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center; 
+            margin-bottom: 5px;
+        }
+
+        .entry-title-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .entry-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #000;
+        }
+        
+        .project-links {
+            font-size: 12px;
+            display: flex;
+            gap: 8px;
+        }
+
+        .project-links a {
+            text-decoration: none;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 1px 6px;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .project-links a:hover {
+            background-color: var(--accent);
+            color: white;
+        }
+
+        .entry-tech {
+            font-size: 13px;
+            font-family: Consolas, monospace;
+            color: var(--text-light);
+            background: #f4f9fc;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .entry-role {
+            font-style: italic;
+            font-size: 14px;
+            color: var(--text-light);
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        ul {
+            margin: 5px 0;
+            padding-left: 18px;
+        }
+
+        li {
+            font-size: 14px;
+            margin-bottom: 4px;
+            color: #444;
+        }
+
+        /* Education */
+        .edu-entry {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+        
+        .edu-school {
+            font-weight: 600;
+        }
+        
+        .edu-date {
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        /* PRINT SPECIFIC STYLES */
+        @media print {
+            /* Hide the button when printing */
+            .print-container { 
+                display: none !important; 
+            }
+            
+            body { 
+                padding: 0; 
+                margin: 0;
+                max-width: 100%;
+            }
+
+            @page {
+                margin: 1cm;
+                size: auto;
+            }
+
+            /* Ensure links look clickable (Blue) in PDF */
+            a { 
+                color: var(--accent) !important; 
+                text-decoration: none;
+            }
+            
+            /* Simplify project link buttons to text links for PDF cleanliness */
+            .project-links a { 
+                border: none; 
+                padding: 0; 
+                color: var(--accent) !important; 
+                text-decoration: underline; 
+                margin-right: 10px;
+            }
+
+            /* Prevent page breaks inside project entries */
+            .entry {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Print Button (Hidden in PDF) -->
+    <div class="print-container">
+        <button class="print-btn" onclick="window.print()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
+                <path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 9a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H5v-2z"/>
+            </svg>
+            Download / Print PDF
+        </button>
+    </div>
+
+    <header>
+        <div class="header-left">
+            <h1>Shivam Kumar</h1>
+            <div class="role">Software Engineer | Full Stack Developer</div>
+        </div>
+        <div class="header-right">
+            Bihar, India | +91 620-028-5628<br>
+            <a href="mailto:shivamsinghamrajput@gmail.com">shivamsinghamrajput@gmail.com</a><br>
+            <a href="https://github.com/shivaarajput">github.com/shivaarajput</a>
+        </div>
+    </header>
+
+    <section>
+        <h2>Professional Profile</h2>
+        <p style="font-size: 14px; margin-top: 0;">
+            Results-driven Software Engineer skilled in building fast, scalable web apps. Experienced with modern JavaScript (Next.js, React) and Python backends (Django, Flask). Strong background in decentralized systems and integrating LLMs into real-world workflows. Focused on clean code and polished, user-friendly experiences.
+        </p>
+    </section>
+
+    <section>
+        <h2>Technical Arsenal</h2>
+        <div class="skills-grid">
+            <div class="skill-category">Languages</div>
+            <div>Python, JavaScript (ES6+), TypeScript, Bash, HTML5, CSS3</div>
+
+            <div class="skill-category">Core Frameworks</div>
+            <div>Django, Flask, Node.js, Express.js, React.js, Next.js 14+</div>
+
+            <div class="skill-category">Data & Systems</div>
+            <div>Firebase, REST APIs, WebRTC, Parser Design, JSON Architecture</div>
+
+            <div class="skill-category">DevOps & Tools</div>
+            <div>Git, GitHub Actions, Vercel, Render, VS Code</div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Engineering Experience (Projects)</h2>
+
+        <!-- PyPI Lens -->
+        <div class="entry">
+            <div class="entry-header">
+                <div class="entry-title-group">
+                    <span class="entry-title">PyPI Lens</span>
+                    <div class="project-links">
+                        <a href="https://pypi-lens.vercel.app/">Live Demo</a>
+                        <a href="https://github.com/shivaarajput/PyPI-Lens">Source Code</a>
+                    </div>
+                </div>
+                <span class="entry-tech">React • Vite • Recharts</span>
+            </div>
+            <span class="entry-role">Lead Developer</span>
+            <ul>
+                <li>Engineered a high-performance analytics dashboard that visualizes complex Python package data, connecting directly to PyPI JSON & Stats APIs.</li>
+                <li>Optimized frontend performance using Vite and efficient state management, resulting in near-instant load times for heavy data sets.</li>
+                <li>Designed a modular UI with Tailwind CSS to assist developers in tracking release history and download trends effectively.</li>
+            </ul>
+        </div>
+
+        <!-- ShivaAI -->
+        <div class="entry">
+            <div class="entry-header">
+                <div class="entry-title-group">
+                    <span class="entry-title">ShivaAI</span>
+                    <div class="project-links">
+                        <a href="https://shiva-ai-phi.vercel.app">Live Demo</a>
+                        <a href="https://github.com/shivaarajput/ShivaAI">Source Code</a>
+                    </div>
+                </div>
+                <span class="entry-tech">Next.js • Google AI • Genkit</span>
+            </div>
+            <span class="entry-role">Full Stack Developer</span>
+            <ul>
+                <li>Orchestrated the integration of Google’s Generative AI to interpret user prompts and structure professional-grade academic reports.</li>
+                <li>Implemented Next.js server actions for secure, server-side API communication, enhancing data privacy and application speed.</li>
+            </ul>
+        </div>
+
+        <!-- ShivaDrop -->
+        <div class="entry">
+            <div class="entry-header">
+                <div class="entry-title-group">
+                    <span class="entry-title">ShivaDrop</span>
+                    <div class="project-links">
+                        <a href="https://shivadrop.onrender.com">Live Demo</a>
+                        <a href="https://github.com/shivaarajput/ShivaDrop">Source Code</a>
+                    </div>
+                </div>
+                <span class="entry-tech">WebRTC • Node.js • Socket.io</span>
+            </div>
+            <span class="entry-role">Systems Engineer</span>
+            <ul>
+                <li>Architected a decentralized, peer-to-peer file sharing protocol requiring zero server-side storage.</li>
+                <li>Leveraged WebRTC for direct browser-to-browser data channels, eliminating bandwidth bottlenecks and ensuring 100% user privacy.</li>
+            </ul>
+        </div>
+
+        <!-- QuizOMate -->
+        <div class="entry">
+            <div class="entry-header">
+                <div class="entry-title-group">
+                    <span class="entry-title">QuizOMate</span>
+                    <div class="project-links">
+                        <a href="https://quiz-o-mate.vercel.app">Live Demo</a>
+                        <a href="https://github.com/shivaarajput/QuizOMate">Source Code</a>
+                    </div>
+                </div>
+                <span class="entry-tech">TypeScript • Next.js • Genkit</span>
+            </div>
+            <span class="entry-role">AI Developer</span>
+            <ul>
+                <li>Built an end-to-end examination platform utilizing Genkit to algorithmically generate diverse question sets from source material.</li>
+                <li>Streamlined the grading process with automated assessment logic, reducing administrative time for educators.</li>
+            </ul>
+        </div>
+        
+        <!-- nnlpy -->
+        <div class="entry">
+            <div class="entry-header">
+                <div class="entry-title-group">
+                    <span class="entry-title">nnlpy</span>
+                    <div class="project-links">
+                        <a href="https://pypi.org/project/nnlpy/">PyPI Package</a>
+                        <a href="https://github.com/shivaarajput/nnlpy">Source Code</a>
+                    </div>
+                </div>
+                <span class="entry-tech">Python • CLI • PyPI</span>
+            </div>
+            <span class="entry-role">Library Author</span>
+            <ul>
+                <li>Designed "Near Natural Language" (NNL), a custom human-readable data notation mapping 1:1 to JSON structures.</li>
+                <li>Developed and published a robust Python CLI tool for parsing and serialization, optimizing configuration management workflows.</li>
+            </ul>
+        </div>
+
+    </section>
+
+    <section>
+        <h2>Education</h2>
+        
+        <div class="edu-entry">
+            <span class="edu-school">Master of Computer Applications</span>
+            <span class="edu-date">2025 – Present</span>
+        </div>
+        <div style="font-size: 14px; margin-bottom: 10px;">SRM Institute of Science and Technology (SRMIST)</div>
+
+        <div class="edu-entry">
+            <span class="edu-school">Bachelor of Computer Applications </span>
+            <span class="edu-date">2022 – 2025</span>
+        </div>
+        <div style="font-size: 14px;">Nalanda College | Patliputra University</div>
+    </section>
+
+</body>
+</html>

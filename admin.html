@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Admin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = { darkMode: 'class', theme: { extend: { colors: { primary: '#0d9488', dark: '#0f172a' } } } }
+    </script>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-sans min-h-screen">
+
+    <!-- Login Overlay -->
+    <div id="login-screen" class="fixed inset-0 z-50 bg-gray-900 flex items-center justify-center">
+        <div class="bg-gray-800 p-8 rounded-xl shadow-2xl w-full max-w-md border border-gray-700">
+            <h2 class="text-2xl font-bold text-white mb-6 text-center">Admin Access</h2>
+            <form id="login-form" class="space-y-4">
+                <input type="email" id="login-email" placeholder="Email" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-3 focus:ring-2 focus:ring-primary outline-none">
+                <input type="password" id="login-pass" placeholder="Password" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-3 focus:ring-2 focus:ring-primary outline-none">
+                <button type="submit" class="w-full bg-primary hover:bg-teal-700 text-white font-bold py-3 rounded-lg transition-colors">Login</button>
+                <p id="login-error" class="text-red-500 text-center mt-2 hidden"></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main Dashboard -->
+    <div id="dashboard" class="hidden">
+        <!-- Navbar -->
+        <nav class="bg-gray-800 border-b border-gray-700 p-4 sticky top-0 z-40">
+            <div class="container mx-auto flex justify-between items-center">
+                <span class="text-xl font-bold text-white">Portfolio<span class="text-teal-400">Config</span></span>
+                <button id="logout-btn" class="text-sm text-gray-400 hover:text-white"><i class="fas fa-sign-out-alt mr-2"></i>Logout</button>
+            </div>
+        </nav>
+
+        <div class="container mx-auto p-6 pb-24">
+            <!-- Tabs -->
+            <div class="flex flex-wrap gap-2 mb-6 border-b border-gray-700 pb-2">
+                <button class="tab-btn active px-4 py-2 bg-gray-700 rounded-t-lg text-white" onclick="switchTab('general')">General</button>
+                <button class="tab-btn px-4 py-2 hover:bg-gray-700 rounded-t-lg text-gray-400" onclick="switchTab('about')">About</button>
+                <button class="tab-btn px-4 py-2 hover:bg-gray-700 rounded-t-lg text-gray-400" onclick="switchTab('skills')">Skills</button>
+                <button class="tab-btn px-4 py-2 hover:bg-gray-700 rounded-t-lg text-gray-400" onclick="switchTab('projects')">Projects</button>
+                <button class="tab-btn px-4 py-2 hover:bg-gray-700 rounded-t-lg text-gray-400" onclick="switchTab('timeline')">Timeline</button>
+            </div>
+
+            <!-- Form Content -->
+            <form id="config-form">
+                
+                <!-- General Tab -->
+                <div id="tab-general" class="tab-content space-y-4">
+                    <h3 class="text-lg font-bold text-teal-400 mb-4">Hero Section</h3>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="form-group">
+                            <label class="block text-sm mb-1 text-gray-400">Full Name</label>
+                            <input type="text" name="personal.name" class="w-full bg-gray-800 border border-gray-700 rounded p-2">
+                        </div>
+                        <div class="form-group">
+                            <label class="block text-sm mb-1 text-gray-400">Profile Image URL</label>
+                            <input type="text" name="personal.avatar" class="w-full bg-gray-800 border border-gray-700 rounded p-2">
+                        </div>      
+                        <div class="form-group col-span-2">
+                            <label class="block text-sm mb-1 text-gray-400">Description</label>
+                            <textarea name="personal.desc" class="w-full bg-gray-800 border border-gray-700 rounded p-2 h-20"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="block text-sm mb-1 text-gray-400">Job Titles (Comma separated)</label>
+                            <input type="text" id="titles-input" class="w-full bg-gray-800 border border-gray-700 rounded p-2">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="block text-sm mb-1 text-gray-400">GitHub URL</label>
+                            <input type="text" name="personal.github" class="w-full bg-gray-800 border border-gray-700 rounded p-2">
+                        </div>
+                        <div class="form-group">
+                            <label class="block text-sm mb-1 text-gray-400">Resume Link</label>
+                            <input type="text" name="personal.resume" class="w-full bg-gray-800 border border-gray-700 rounded p-2">
+                        </div>
+                        <div class="form-group">
+                            <label class="block text-sm mb-1 text-gray-400">Resume Download Link</label>
+                            <input type="text" name="personal.resume_download" class="w-full bg-gray-800 border border-gray-700 rounded p-2">
+                        </div>
+                    </div>
+                    <h3 class="text-lg font-bold text-teal-400 mb-4 mt-8">Contact Info</h3>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="form-group"><label class="text-sm text-gray-400">Phone</label><input type="text" name="personal.contact.phone" class="w-full bg-gray-800 border border-gray-700 rounded p-2"></div>
+                        <div class="form-group"><label class="text-sm text-gray-400">Email</label><input type="text" name="personal.contact.email" class="w-full bg-gray-800 border border-gray-700 rounded p-2"></div>
+                        <div class="form-group"><label class="text-sm text-gray-400">Address</label><input type="text" name="personal.contact.address" class="w-full bg-gray-800 border border-gray-700 rounded p-2"></div>
+                    </div>
+                </div>
+
+                <!-- About Tab -->
+                <div id="tab-about" class="tab-content hidden space-y-4">
+                    <h3 class="text-lg font-bold text-teal-400 mb-4">About Me</h3>
+                    <div class="form-group">
+                        <label class="block text-sm mb-1 text-gray-400">Role Title</label>
+                        <input type="text" name="about.role" class="w-full bg-gray-800 border border-gray-700 rounded p-2">
+                    </div>
+                    <div class="form-group">
+                        <label class="block text-sm mb-1 text-gray-400">Biography</label>
+                        <textarea name="about.bio" class="w-full bg-gray-800 border border-gray-700 rounded p-2 h-32"></textarea>
+                    </div>
+                    <div class="form-group">
+                            <label class="block text-sm mb-1 text-gray-400">Location</label>
+                            <input type="text" name="personal.location" class="w-full bg-gray-800 border border-gray-700 rounded p-2">
+                        </div>
+                    <div class="form-group">
+                        <label class="block text-sm mb-1 text-gray-400">Education Summary (Short)</label>
+                        <input type="text" name="personal.education_summary" class="w-full bg-gray-800 border border-gray-700 rounded p-2">
+                    </div>
+                </div>
+
+                <!-- Skills Tab (UI Cards) -->
+                <div id="tab-skills" class="tab-content hidden space-y-6">
+                    <div class="bg-gray-800 p-4 rounded-lg border border-gray-700">
+                        <h4 class="text-teal-400 font-bold mb-3">Add New Skill</h4>
+                        <div class="grid md:grid-cols-3 gap-2">
+                            <input type="text" id="new-skill-name" placeholder="Name (e.g. Python)" class="bg-gray-700 text-white p-2 rounded border border-gray-600">
+                            <input type="text" id="new-skill-icon" placeholder="Icon (e.g. fab fa-python)" class="bg-gray-700 text-white p-2 rounded border border-gray-600">
+                            <button type="button" onclick="addSkill()" class="bg-teal-600 text-white p-2 rounded hover:bg-teal-700">Add</button>
+                        </div>
+                    </div>
+                    <div id="skills-list" class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <!-- Skills rendered here -->
+                    </div>
+                </div>
+
+                <!-- Projects Tab (UI Cards) -->
+                <div id="tab-projects" class="tab-content hidden space-y-6">
+                    <div class="bg-gray-800 p-4 rounded-lg border border-gray-700">
+                        <h4 class="text-teal-400 font-bold mb-3">Add New Project</h4>
+                        <div class="grid md:grid-cols-2 gap-2 mb-2">
+                            <input type="text" id="new-proj-title" placeholder="Title" class="bg-gray-700 text-white p-2 rounded border border-gray-600">
+                            <input type="text" id="new-proj-desc" placeholder="Description" class="bg-gray-700 text-white p-2 rounded border border-gray-600">
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-2 mb-2">
+                            <input type="text" id="new-proj-source" placeholder="Source Code Link" class="bg-gray-700 text-white p-2 rounded border border-gray-600">
+                            <input type="text" id="new-proj-live" placeholder="Live Demo Link" class="bg-gray-700 text-white p-2 rounded border border-gray-600">
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-2 mb-2">
+                            <input type="text" id="new-proj-icon" placeholder="Icon Class (fas fa-code)" class="bg-gray-700 text-white p-2 rounded border border-gray-600">
+                            <input type="text" id="new-proj-tags" placeholder="Tags (comma separated)" class="bg-gray-700 text-white p-2 rounded border border-gray-600">
+                        </div>
+                        <button type="button" onclick="addProject()" class="w-full bg-teal-600 text-white p-2 rounded hover:bg-teal-700">Add Project</button>
+                    </div>
+                    <div id="projects-list" class="space-y-4">
+                        <!-- Projects rendered here -->
+                    </div>
+                </div>
+
+                <!-- Timeline Tab (UI Cards) -->
+                <div id="tab-timeline" class="tab-content hidden space-y-6">
+                    <div class="bg-gray-800 p-4 rounded-lg border border-gray-700">
+                        <h4 class="text-teal-400 font-bold mb-3">Add Timeline Entry</h4>
+                        <div class="grid md:grid-cols-2 gap-2 mb-2">
+                            <input type="text" id="new-time-year" placeholder="Year (e.g. 2023-Present)" class="bg-gray-700 text-white p-2 rounded border border-gray-600">
+                            <input type="text" id="new-time-title" placeholder="Title (e.g. BCA)" class="bg-gray-700 text-white p-2 rounded border border-gray-600">
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-2 mb-2">
+                            <input type="text" id="new-time-sub" placeholder="Subtitle (e.g. University)" class="bg-gray-700 text-white p-2 rounded border border-gray-600">
+                            <input type="text" id="new-time-desc" placeholder="Description" class="bg-gray-700 text-white p-2 rounded border border-gray-600">
+                        </div>
+                        <button type="button" onclick="addTimeline()" class="w-full bg-teal-600 text-white p-2 rounded hover:bg-teal-700">Add Entry</button>
+                    </div>
+                    <div id="timeline-list" class="space-y-4">
+                        <!-- Timeline rendered here -->
+                    </div>
+                </div>
+
+                <!-- Action Bar -->
+                <div class="fixed bottom-0 left-0 w-full bg-gray-800 border-t border-gray-700 p-4 flex justify-end gap-4 shadow-lg z-50">
+                    <span id="status-msg" class="text-green-400 self-center hidden">Saved Successfully!</span>
+                    <button type="button" onclick="saveData()" class="bg-primary hover:bg-teal-600 text-white px-8 py-3 rounded-lg font-bold shadow-lg transform hover:scale-105 transition-all">
+                        <i class="fas fa-save mr-2"></i> Save Configuration
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js';
+        import { getFirestore, doc, getDoc, setDoc } from 'https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js';
+        import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js';
+
+        // Initialize
+        const firebaseConfig = {
+            apiKey: "AIzaSyCXxJ8102DXfA83-Z7QCRl4XZW0TmcOz5Y",
+            authDomain: "shivaarajput-68dd6.firebaseapp.com",
+            projectId: "shivaarajput-68dd6",
+            storageBucket: "shivaarajput-68dd6.firebasestorage.app",
+            messagingSenderId: "685063111056",
+            appId: "1:685063111056:web:8bb34eb5707cf5d1e0f315"
+        };
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const auth = getAuth(app);
+        const appId = 'my-portfolio'; 
+
+        // State
+        let currentData = { personal: { contact: {} }, about: {}, skills: [], projects: [], timeline: [] };
+
+        // Auth Logic
+        const loginScreen = document.getElementById('login-screen');
+        const dashboard = document.getElementById('dashboard');
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                loginScreen.classList.add('hidden');
+                dashboard.classList.remove('hidden');
+                fetchData();
+            } else {
+                loginScreen.classList.remove('hidden');
+                dashboard.classList.add('hidden');
+            }
+        });
+
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const pass = document.getElementById('login-pass').value;
+            try {
+                await signInWithEmailAndPassword(auth, email, pass);
+            } catch (err) {
+                document.getElementById('login-error').innerText = err.message;
+                document.getElementById('login-error').classList.remove('hidden');
+            }
+        });
+
+        document.getElementById('logout-btn').addEventListener('click', () => signOut(auth));
+
+        // Data Logic
+        async function fetchData() {
+            try {
+                const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'content', 'main');
+                const snap = await getDoc(docRef);
+                if (snap.exists()) {
+                    currentData = snap.data();
+                    // Ensure array fields exist
+                    if(!currentData.skills) currentData.skills = [];
+                    if(!currentData.projects) currentData.projects = [];
+                    if(!currentData.timeline) currentData.timeline = [];
+                    
+                    populateForm(currentData);
+                }
+            } catch (err) {
+                console.error("Fetch error", err);
+            }
+        }
+
+        function populateForm(data) {
+            setVal('personal.name', data.personal?.name);
+            setVal('personal.location', data.personal?.location);
+            setVal('personal.desc', data.personal?.desc);
+            setVal('personal.avatar', data.personal?.avatar);
+            setVal('personal.github', data.personal?.github);
+            setVal('personal.resume', data.personal?.resume);
+            setVal('personal.resume_download', data.personal?.resume_download);
+            setVal('personal.education_summary', data.personal?.education_summary);
+            
+            setVal('personal.contact.phone', data.personal?.contact?.phone);
+            setVal('personal.contact.email', data.personal?.contact?.email);
+            setVal('personal.contact.address', data.personal?.contact?.address);
+
+            setVal('about.role', data.about?.role);
+            setVal('about.bio', data.about?.bio);
+
+            document.getElementById('titles-input').value = (data.personal?.titles || []).join(', ');
+
+            // Render Lists
+            renderSkillsList();
+            renderProjectsList();
+            renderTimelineList();
+        }
+
+        // -------------------------
+        // LIST MANAGERS (Add/Remove)
+        // -------------------------
+        
+        // Skills
+        window.renderSkillsList = function() {
+            const container = document.getElementById('skills-list');
+            container.innerHTML = currentData.skills.map((s, i) => `
+                <div class="bg-gray-700 p-3 rounded flex justify-between items-center">
+                    <div class="flex items-center gap-2">
+                        <i class="${s.icon} text-teal-400"></i>
+                        <span class="text-white">${s.name}</span>
+                    </div>
+                    <button type="button" onclick="removeSkill(${i})" class="text-red-400 hover:text-red-300"><i class="fas fa-trash"></i></button>
+                </div>
+            `).join('');
+        }
+        window.addSkill = function() {
+            const name = document.getElementById('new-skill-name').value;
+            const icon = document.getElementById('new-skill-icon').value;
+            if(name && icon) {
+                currentData.skills.push({ name, icon, color: 'text-teal-400' });
+                renderSkillsList();
+                document.getElementById('new-skill-name').value = '';
+                document.getElementById('new-skill-icon').value = '';
+            }
+        }
+        window.removeSkill = function(index) {
+            currentData.skills.splice(index, 1);
+            renderSkillsList();
+        }
+
+        // Projects
+        window.renderProjectsList = function() {
+            const container = document.getElementById('projects-list');
+            container.innerHTML = currentData.projects.map((p, i) => `
+                <div class="bg-gray-700 p-4 rounded flex justify-between items-start">
+                    <div>
+                        <h5 class="font-bold text-white">${p.title}</h5>
+                        <p class="text-sm text-gray-400">${p.desc}</p>
+                        <div class="text-xs text-gray-500 mt-1">Links: ${p.source_link ? 'Source' : ''} ${p.live_link ? 'Live' : ''}</div>
+                    </div>
+                    <button type="button" onclick="removeProject(${i})" class="text-red-400 hover:text-red-300 p-2"><i class="fas fa-trash"></i></button>
+                </div>
+            `).join('');
+        }
+        window.addProject = function() {
+            const title = document.getElementById('new-proj-title').value;
+            const desc = document.getElementById('new-proj-desc').value;
+            const source = document.getElementById('new-proj-source').value;
+            const live = document.getElementById('new-proj-live').value;
+            const icon = document.getElementById('new-proj-icon').value;
+            const tags = document.getElementById('new-proj-tags').value;
+
+            if(title) {
+                currentData.projects.push({ 
+                    title, desc, 
+                    source_link: source, live_link: live, 
+                    icon: icon || 'fas fa-code',
+                    tags: tags ? tags.split(',').map(t=>t.trim()) : []
+                });
+                renderProjectsList();
+                // Clear inputs (optional but good UX)
+                document.getElementById('new-proj-title').value = '';
+            }
+        }
+        window.removeProject = function(index) {
+            currentData.projects.splice(index, 1);
+            renderProjectsList();
+        }
+
+        // Timeline
+        window.renderTimelineList = function() {
+            const container = document.getElementById('timeline-list');
+            container.innerHTML = currentData.timeline.map((t, i) => `
+                <div class="bg-gray-700 p-4 rounded flex justify-between items-center">
+                    <div>
+                        <span class="text-teal-400 text-xs font-bold">${t.year}</span>
+                        <h5 class="font-bold text-white">${t.title}</h5>
+                        <p class="text-sm text-gray-400">${t.subtitle}</p>
+                    </div>
+                    <button type="button" onclick="removeTimeline(${i})" class="text-red-400 hover:text-red-300"><i class="fas fa-trash"></i></button>
+                </div>
+            `).join('');
+        }
+        window.addTimeline = function() {
+            const year = document.getElementById('new-time-year').value;
+            const title = document.getElementById('new-time-title').value;
+            const subtitle = document.getElementById('new-time-sub').value;
+            const desc = document.getElementById('new-time-desc').value;
+
+            if(title) {
+                currentData.timeline.push({ year, title, subtitle, desc, icon: 'fas fa-circle' });
+                renderTimelineList();
+                document.getElementById('new-time-title').value = '';
+            }
+        }
+        window.removeTimeline = function(index) {
+            currentData.timeline.splice(index, 1);
+            renderTimelineList();
+        }
+
+        window.saveData = async function() {
+            const btn = document.querySelector('button[onclick="saveData()"]');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
+            
+            // Update base fields
+            currentData.personal.name = getVal('personal.name');
+            currentData.personal.location = getVal('personal.location');
+            currentData.personal.desc = getVal('personal.desc');
+            currentData.personal.avatar = getVal('personal.avatar');
+            currentData.personal.github = getVal('personal.github');
+            currentData.personal.resume_download = getVal('personal.resume_download');
+            currentData.personal.education_summary = getVal('personal.education_summary');
+            currentData.personal.titles = document.getElementById('titles-input').value.split(',').map(s => s.trim());
+            
+            currentData.personal.contact.phone = getVal('personal.contact.phone');
+            currentData.personal.contact.email = getVal('personal.contact.email');
+            currentData.personal.contact.address = getVal('personal.contact.address');
+
+            currentData.about.role = getVal('about.role');
+            currentData.about.bio = getVal('about.bio');
+
+            try {
+                const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'content', 'main');
+                await setDoc(docRef, currentData);
+                
+                const msg = document.getElementById('status-msg');
+                msg.classList.remove('hidden');
+                setTimeout(() => msg.classList.add('hidden'), 3000);
+            } catch (err) {
+                alert("Error saving: " + err.message);
+            } finally {
+                btn.innerHTML = originalText;
+            }
+        }
+
+        // Helpers
+        function setVal(name, val) {
+            const el = document.querySelector(`[name="${name}"]`);
+            if(el) el.value = val || '';
+        }
+        function getVal(name) {
+            const el = document.querySelector(`[name="${name}"]`);
+            return el ? el.value : '';
+        }
+        
+        // Tabs Logic
+        window.switchTab = function(tabName) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.getElementById(`tab-${tabName}`).classList.remove('hidden');
+            
+            document.querySelectorAll('.tab-btn').forEach(el => {
+                el.classList.remove('bg-gray-700', 'text-white');
+                el.classList.add('text-gray-400');
+            });
+            const activeBtn = document.querySelector(`button[onclick="switchTab('${tabName}')"]`);
+            activeBtn.classList.add('bg-gray-700', 'text-white');
+            activeBtn.classList.remove('text-gray-400');
+        }
+    </script>
+</body>
+</html>
