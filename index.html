@@ -155,6 +155,36 @@
                 opacity: 0;
             }
         }
+
+        /* Space Toast Notification */
+        #space-toast {
+            visibility: hidden;
+            min-width: 300px;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(12px);
+            border-left: 4px solid #0d9488;
+            color: #fff;
+            text-align: left;
+            border-radius: 8px;
+            padding: 16px;
+            position: fixed;
+            z-index: 100;
+            right: 20px;
+            bottom: 30px;
+            font-size: 15px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            transform: translateX(120%);
+            transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55), visibility 0.5s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        #space-toast.show {
+            visibility: visible;
+            transform: translateX(0);
+        }
+        #space-toast.error { border-left-color: #ef4444; }
+        #space-toast.success { border-left-color: #10b981; }
     </style>
 </head>
 
@@ -208,6 +238,9 @@
                     <li><a href="#contact"
                             class="block py-2 px-3 text-gray-900 hover:text-teal-400 dark:text-gray-300 dark:hover:text-teal-400 md:border-0 md:p-0">Contact</a>
                     </li>
+                    <li><a href="/links"
+                            class="block py-2 px-3 text-gray-900 hover:text-teal-400 dark:text-gray-300 dark:hover:text-teal-400 md:border-0 md:p-0">Links</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -260,7 +293,7 @@
                     </div>
                     <img id="hero-avatar"
                         class="relative rounded-full w-full h-full object-cover border-4 border-white dark:border-gray-800 shadow-2xl"
-                        src="https://github.com/shivaarajput.png" alt="Profile">
+                        src="https://shivaarajput.github.io/assets/images/profile-preview.png" alt="Profile">
                     <div
                         class="absolute -bottom-4 -right-4 bg-white dark:bg-gray-800 p-3 rounded-xl border border-gray-200 dark:border-gray-700 shadow-xl flex items-center gap-3">
                         <div class="bg-green-500/20 p-2 rounded-lg"><i
@@ -404,32 +437,45 @@
                 </div>
                 <div
                     class="bg-white dark:bg-gray-800 p-8 rounded-xl border border-gray-200 dark:border-gray-700 shadow-xl">
-                    <form class="space-y-6">
+                     <!-- Updated Form for Web3Forms -->
+                    <form id="contact-form" class="space-y-6">
+                        <!-- IMPORTANT: Replace with your actual Web3Forms Access Key -->
+                        <input type="hidden" name="access_key" value="80ff7584-e265-48a3-92c4-bdf4e6bbf116">
+                         <input type="hidden" name="from_name" value="Shivam Portfolio">
+                        <input type="hidden" name="subject" value="New Submission from Portfolio">
+                        
+
                         <div>
                             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
-                            <input type="text"
-                                class="bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white text-sm rounded-lg block w-full p-3"
-                                placeholder="John Doe">
+                            <input type="text" name="name" class="bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white text-sm rounded-lg block w-full p-3 focus:ring-teal-500 focus:border-teal-500 transition-all" placeholder="John Doe" required>
                         </div>
                         <div>
                             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
-                            <input type="email"
-                                class="bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white text-sm rounded-lg block w-full p-3"
-                                placeholder="name@example.com">
+                            <input type="email" name="email" class="bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white text-sm rounded-lg block w-full p-3 focus:ring-teal-500 focus:border-teal-500 transition-all" placeholder="name@example.com" required>
                         </div>
                         <div>
                             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Message</label>
-                            <textarea rows="4"
-                                class="bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white text-sm rounded-lg block w-full p-3"></textarea>
+                            <textarea name="message" rows="4" class="bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white text-sm rounded-lg block w-full p-3 focus:ring-teal-500 focus:border-teal-500 transition-all" required></textarea>
                         </div>
-                        <button type="button"
-                            class="w-full text-white bg-gradient-to-r from-teal-500 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-teal-300/30 font-medium rounded-lg text-sm px-5 py-3">Send
-                            Message</button>
+                        
+                        <button type="submit" id="submit-btn" class="w-full text-white bg-gradient-to-r from-teal-500 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-teal-300/30 font-medium rounded-lg text-sm px-5 py-3 transition-all flex items-center justify-center gap-2">
+                            <span>Send Message</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
                     </form>
                 </div>
             </div>
         </div>
     </section>
+
+        <!-- Custom Notification Toast -->
+    <div id="space-toast">
+        <div id="toast-icon" class="text-2xl"></div>
+        <div>
+            <h4 id="toast-title" class="font-bold text-sm uppercase tracking-wider">Notification</h4>
+            <p id="toast-msg" class="text-gray-300 text-sm mt-1">Message content</p>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer
@@ -440,7 +486,7 @@
                         class="text-teal-500 dark:text-teal-400">.</span></span>
             </div>
             <div class="text-gray-600 dark:text-gray-400 text-sm text-center md:text-right">
-                <p>&copy; 2024 Shivam Kumar. All rights reserved.</p>
+                <p>&copy; 2025 Shivam Kumar. All rights reserved.</p>
                 <p class="mt-1">Designed with <i class="fas fa-heart text-red-500 mx-1"></i> by Shivam</p>
             </div>
         </div>
@@ -823,6 +869,87 @@
 
         init();
         animate();
+
+         // -----------------------------------------
+        // CONTACT FORM LOGIC (Updated)
+        // -----------------------------------------
+        const contactForm = document.getElementById('contact-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const toast = document.getElementById('space-toast');
+        const toastIcon = document.getElementById('toast-icon');
+        const toastTitle = document.getElementById('toast-title');
+        const toastMsg = document.getElementById('toast-msg');
+
+        function showToast(type, title, message) {
+            toast.className = `show ${type}`;
+            toastTitle.innerText = title;
+            toastMsg.innerText = message;
+            
+            if(type === 'success') {
+                toastIcon.innerHTML = '<i class="fas fa-check-circle text-green-400"></i>';
+            } else {
+                toastIcon.innerHTML = '<i class="fas fa-exclamation-triangle text-red-400"></i>';
+            }
+
+            // Auto hide after 4 seconds
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 4000);
+        }
+
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const formData = new FormData(contactForm);
+                const accessKey = formData.get('access_key');
+
+                // 1. Client-side Validation for Access Key
+                if (!accessKey || accessKey === "YOUR_ACCESS_KEY_HERE") {
+                    showToast('error', 'Configuration Error', 'Please add your Web3Forms Access Key in the HTML code.');
+                    return; // Stop execution
+                }
+
+                // 2. Loading State
+                const originalBtnContent = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Transmitting...';
+                submitBtn.disabled = true;
+                submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
+
+                const object = Object.fromEntries(formData);
+                const json = JSON.stringify(object);
+
+                // 3. Async Submission
+                fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: json
+                })
+                .then(async (response) => {
+                    let json = await response.json();
+                    if (response.status == 200) {
+                        showToast('success', 'Transmission Successful', 'Your message has reached the server. 🚀');
+                        contactForm.reset();
+                    } else {
+                        console.error(response);
+                        showToast('error', 'Transmission Failed', json.message || 'Something went wrong.');
+                    }
+                })
+                .catch(error => {
+                    console.error(error);
+                    showToast('error', 'Network Error', 'Unable to connect to the server.');
+                })
+                .finally(() => {
+                    // 4. Reset Button
+                    submitBtn.innerHTML = originalBtnContent;
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
+                });
+            });
+        }
     </script>
 </body>
 

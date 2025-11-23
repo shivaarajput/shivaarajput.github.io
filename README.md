@@ -29,10 +29,11 @@ A high-performance, dynamic portfolio website built for Software Engineers. It f
 .
 ├── assets\images
 ├── index.html       # Main Portfolio (The Viewer)
+├── links.html       # Social Links
 ├── admin.html       # Admin Dashboard (The Controller)
 ├── 404.html         # Custom Error Page
 └── README.md        # Documentation
-└── LICENSE.md        # Documentation
+└── LICENSE.md        # License
 ```
 
 ## ⚙️ Setup & Configuration
